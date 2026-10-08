@@ -1,67 +1,72 @@
-import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitepress';
-import { inviteUrl, readDiscordClientId } from '../src/invite';
+import { INVITE_URL } from '../lib/links';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const enGuide = '/guide/quick-start';
+const ptGuide = '/pt/guide/quick-start';
 
-function loadClientId(): string | undefined {
-  let dotenv: string | undefined;
-  try {
-    dotenv = readFileSync(resolve(root, '.env'), 'utf8');
-  } catch (error) {
-    const code =
-      typeof error === 'object' && error !== null && 'code' in error ? error.code : undefined;
-    if (code !== 'ENOENT') throw error;
-  }
+const copyright = 'Copyright © 2026 Shiva Toolbox';
 
-  return readDiscordClientId(process.env, dotenv);
+function topNav(guideHref: string, docsLabel: string) {
+  return [
+    ...(INVITE_URL
+      ? [{ text: 'Invite', link: INVITE_URL, target: '_blank', rel: 'noreferrer' }]
+      : []),
+    { text: docsLabel, link: guideHref },
+  ];
 }
-
-const discordInviteUrl = inviteUrl(loadClientId()) ?? undefined;
 
 export default defineConfig({
   title: 'Shiva Toolbox',
+  srcDir: 'src',
   cleanUrls: true,
   lastUpdated: false,
   themeConfig: {
-    inviteUrl: discordInviteUrl,
     search: { provider: 'local' },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/shiva-toolbox/shiva-toolbox' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/shiva-toolbox/shiva-toolbox' }],
   },
   locales: {
     root: {
       label: 'English',
       lang: 'en-US',
       description:
-        'Documentation for Shiva Toolbox, a Discord bot for autorole, join and leave messages, live alerts, and reaction roles.',
+        'Documentation for Shiva Toolbox, a Discord bot for autorole, join and leave messages, and Twitch live alerts.',
       themeConfig: {
-        nav: [{ text: 'Add the bot', link: '/guide/invite' }],
+        nav: topNav(enGuide, 'Documentation'),
         sidebar: [
           {
-            text: 'Guide',
+            text: 'Introduction',
+            collapsed: false,
             items: [
-              { text: 'Add the bot', link: '/guide/invite' },
+              { text: 'Quick start', link: '/guide/quick-start' },
               { text: 'Language', link: '/guide/language' },
             ],
           },
           {
-            text: 'Modules',
+            text: 'Roles',
+            collapsed: false,
+            items: [{ text: 'Autorole', link: '/guide/autorole' }],
+          },
+          {
+            text: 'Messages',
+            collapsed: false,
+            items: [{ text: 'Join and leave', link: '/guide/join-leave' }],
+          },
+          {
+            text: 'Alerts',
+            collapsed: false,
             items: [
-              { text: 'Autorole', link: '/guide/autorole' },
-              { text: 'Join and leave', link: '/guide/join-leave' },
               { text: 'Twitch', link: '/guide/twitch' },
-              { text: 'YouTube', link: '/guide/youtube' },
-              { text: 'Reaction roles', link: '/guide/reaction-roles' },
             ],
+          },
+          {
+            text: 'Project',
+            collapsed: false,
+            items: [{ text: 'Roadmap', link: '/guide/roadmap' }],
           },
         ],
         footer: {
-          message: 'Documentation for the Shiva Toolbox Discord bot.',
-          copyright: 'Shiva Toolbox',
+          message: 'Released under the MIT License.',
+          copyright,
         },
       },
     },
@@ -70,31 +75,44 @@ export default defineConfig({
       lang: 'pt-BR',
       link: '/pt/',
       description:
-        'Documentação do Shiva Toolbox, bot do Discord para autocargo, mensagens de entrada e saída, alertas de live e cargos por reação.',
+        'Documentação do Shiva Toolbox, bot do Discord para autocargo, mensagens de entrada e saída e alertas de live da Twitch.',
       themeConfig: {
-        nav: [{ text: 'Adicionar o bot', link: '/pt/guide/invite' }],
+        nav: topNav(ptGuide, 'Documentação'),
         sidebar: [
           {
-            text: 'Guia',
+            text: 'Introdução',
+            collapsed: false,
             items: [
-              { text: 'Adicionar o bot', link: '/pt/guide/invite' },
+              { text: 'Início rápido', link: '/pt/guide/quick-start' },
               { text: 'Idioma', link: '/pt/guide/language' },
             ],
           },
           {
-            text: 'Módulos',
+            text: 'Cargos',
+            collapsed: false,
+            items: [{ text: 'Autocargo', link: '/pt/guide/autorole' }],
+          },
+          {
+            text: 'Mensagens',
+            collapsed: false,
+            items: [{ text: 'Entrada e saída', link: '/pt/guide/join-leave' }],
+          },
+          {
+            text: 'Alertas',
+            collapsed: false,
             items: [
-              { text: 'Autocargo', link: '/pt/guide/autorole' },
-              { text: 'Entrada e saída', link: '/pt/guide/join-leave' },
               { text: 'Twitch', link: '/pt/guide/twitch' },
-              { text: 'YouTube', link: '/pt/guide/youtube' },
-              { text: 'Cargos por reação', link: '/pt/guide/reaction-roles' },
             ],
+          },
+          {
+            text: 'Projeto',
+            collapsed: false,
+            items: [{ text: 'Roadmap', link: '/pt/guide/roadmap' }],
           },
         ],
         footer: {
-          message: 'Documentação do bot de Discord Shiva Toolbox.',
-          copyright: 'Shiva Toolbox',
+          message: 'Disponível sob a licença MIT.',
+          copyright,
         },
       },
     },

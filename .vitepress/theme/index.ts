@@ -1,35 +1,25 @@
-import { defineComponent, h, type PropType } from 'vue';
+import { defineComponent, h } from 'vue';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
-import { useData } from 'vitepress';
+import HomeActions from './HomeActions.vue';
+import { INVITE_URL } from '../../lib/links';
 import './custom.css';
 
 const InviteButton = defineComponent({
   name: 'InviteButton',
-  props: {
-    size: {
-      type: String as PropType<'nav' | 'hero'>,
-      default: 'hero',
-    },
-  },
-  setup(props) {
-    const { theme, lang } = useData();
-
+  setup() {
     return () => {
-      const url = theme.value.inviteUrl;
-      if (!url) return null;
-
-      const label = lang.value.startsWith('pt') ? 'Adicionar ao Discord' : 'Add to Discord';
+      if (!INVITE_URL) return null;
 
       return h(
         'a',
         {
-          class: ['invite-button', props.size],
-          href: url,
+          class: 'invite-button hero',
+          href: INVITE_URL,
           target: '_blank',
           rel: 'noreferrer',
         },
-        label,
+        'Invite',
       );
     };
   },
@@ -39,8 +29,7 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'nav-bar-content-after': () => h(InviteButton, { size: 'nav' }),
-      'home-hero-actions-after': () => h(InviteButton, { size: 'hero' }),
+      'home-hero-actions-after': () => h(HomeActions),
     });
   },
   enhanceApp({ app }) {
