@@ -43,7 +43,20 @@ export default defineConfig({
         sidebar: [
           {
             text: 'Guide',
-            items: [{ text: 'Add the bot', link: '/guide/invite' }],
+            items: [
+              { text: 'Add the bot', link: '/guide/invite' },
+              { text: 'Language', link: '/guide/language' },
+            ],
+          },
+          {
+            text: 'Modules',
+            items: [
+              { text: 'Autorole', link: '/guide/autorole' },
+              { text: 'Join and leave', link: '/guide/join-leave' },
+              { text: 'Twitch', link: '/guide/twitch' },
+              { text: 'YouTube', link: '/guide/youtube' },
+              { text: 'Reaction roles', link: '/guide/reaction-roles' },
+            ],
           },
         ],
         footer: {
@@ -63,7 +76,20 @@ export default defineConfig({
         sidebar: [
           {
             text: 'Guia',
-            items: [{ text: 'Adicionar o bot', link: '/pt/guide/invite' }],
+            items: [
+              { text: 'Adicionar o bot', link: '/pt/guide/invite' },
+              { text: 'Idioma', link: '/pt/guide/language' },
+            ],
+          },
+          {
+            text: 'Módulos',
+            items: [
+              { text: 'Autocargo', link: '/pt/guide/autorole' },
+              { text: 'Entrada e saída', link: '/pt/guide/join-leave' },
+              { text: 'Twitch', link: '/pt/guide/twitch' },
+              { text: 'YouTube', link: '/pt/guide/youtube' },
+              { text: 'Cargos por reação', link: '/pt/guide/reaction-roles' },
+            ],
           },
         ],
         footer: {

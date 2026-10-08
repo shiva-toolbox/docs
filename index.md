@@ -13,10 +13,17 @@ hero:
 features:
   - title: Autorole
     details: Assign roles when someone joins.
+    link: /guide/autorole
   - title: Join and leave
     details: Post a message when a member joins or leaves.
-  - title: Twitch and YouTube
-    details: Tell the server when a channel goes live.
+    link: /guide/join-leave
+  - title: Twitch
+    details: Tell the server when a Twitch channel goes live.
+    link: /guide/twitch
+  - title: YouTube
+    details: Tell the server when a YouTube channel goes live.
+    link: /guide/youtube
   - title: Reaction roles
     details: Give a role when someone reacts to a message.
+    link: /guide/reaction-roles
 ---
