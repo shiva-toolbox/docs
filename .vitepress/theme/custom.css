@@ -1,0 +1,59 @@
+:root {
+  --vp-c-brand-1: #1f8f78;
+  --vp-c-brand-2: #1a7563;
+  --vp-c-brand-3: #146455;
+  --vp-c-brand-soft: rgba(31, 143, 120, 0.14);
+}
+
+.dark {
+  --vp-c-brand-1: #7ee0c9;
+  --vp-c-brand-2: #5ecfb6;
+  --vp-c-brand-3: #3dbaa3;
+  --vp-c-brand-soft: rgba(126, 224, 201, 0.16);
+}
+
+.invite-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dark .invite-button {
+  color: #06221c;
+}
+
+.invite-button.nav {
+  height: 32px;
+  margin-inline-start: 8px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+
+.invite-button.hero {
+  height: 44px;
+  margin-inline-end: 12px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+
+.invite-button:hover {
+  background: var(--vp-c-brand-2);
+  color: #fff;
+}
+
+.dark .invite-button:hover {
+  color: #06221c;
+}
+
+@media (max-width: 768px) {
+  .VPNavBar .invite-button.nav {
+    display: none;
+  }
+}
