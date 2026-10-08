@@ -13,9 +13,10 @@ pnpm install
 cp .env.example .env
 pnpm test
 pnpm typecheck
+pnpm dev
 ```
 
-`DISCORD_CLIENT_ID` is the public Discord application id. It is used later to build the invite button. Leave it empty for now.
+`DISCORD_CLIENT_ID` is the public Discord application id. With it set, the Add to Discord button opens the OAuth invite. Without it, the site still runs and the button stays hidden.
 
 ## Português
 
@@ -28,6 +29,7 @@ pnpm install
 cp .env.example .env
 pnpm test
 pnpm typecheck
+pnpm dev
 ```
 
-`DISCORD_CLIENT_ID` é o id público da aplicação no Discord. Ele entra depois, no botão de convite. Pode ficar vazio por enquanto.
+`DISCORD_CLIENT_ID` é o id público da aplicação no Discord. Com ele preenchido, o botão Adicionar ao Discord abre o convite OAuth. Sem ele, o site continua no ar e o botão fica oculto.
